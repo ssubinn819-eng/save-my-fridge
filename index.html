@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- SEO 메타 태그 -->
+  <title>냉장고 구조대 (Save My Fridge) | 버리기 전에, 한 끼 더</title>
+  <meta name="description" content="냉장고 속 남은 재료를 입력하면 지금 만들 수 있는 맞춤 요리를 추천하고, 먼저 먹어야 할 재료와 보관법을 알려주어 음식물 쓰레기를 줄이는 SDGs 실천 웹서비스">
+  <meta name="keywords" content="냉장고 파먹기, 냉장고 구조대, 식재료 관리, 레시피 추천, 음식물쓰레기 줄이기, SDGs 12, 지속가능한소비">
+  <meta name="author" content="냉장고 구조대 팀">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="냉장고 구조대 | 버리기 전에, 한 끼 더">
+  <meta property="og:description" content="집에 남은 재료로 지금 바로 만들 수 있는 요리를 찾고, 지구를 위한 작은 실천을 시작하세요.">
+  <meta property="og:type" content="website">
+
+  <!-- 스타일시트 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       9:16 모바일 뷰 래퍼 (PC에서는 스마트폰 목업 프레임, 모바일 기기에서는 100% 네이티브 뷰)
+       ========================================================================= -->
+  <div class="mobile-device-backdrop">
+    <div class="device-preview-header-hint" aria-hidden="true">
+      <div class="preview-badge">📱 9:16 모바일 세로 뷰 최적화</div>
+      <p class="preview-desc">스마트폰에서도 한눈에 볼 수 있도록 세로 화면 규격으로 구성되었습니다.</p>
+    </div>
+
+    <!-- 9:16 스마트폰 프레임 셸 -->
+    <div class="smartphone-frame" id="app-frame">
+      <!-- 스마트폰 상단 상태바 (모의 인디케이터) -->
+      <div class="phone-status-bar" aria-hidden="true">
+        <span class="status-time" id="status-clock">09:41</span>
+        <div class="status-dynamic-island">
+          <span class="island-camera"></span>
+        </div>
+        <div class="status-right-icons">
+          <span class="status-icon">📶</span>
+          <span class="status-icon">5G</span>
+          <span class="status-icon">🔋</span>
+        </div>
+      </div>
+
+  <!-- =========================================================================
+       1. Sticky Header
+       ========================================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#hero-section" class="brand-logo" aria-label="냉장고 구조대 홈으로 이동">
+        <span class="brand-icon">🥕</span>
+        <span>냉장고 구조대</span>
+        <span class="brand-tag">SDGs 12</span>
+      </a>
+
+      <!-- 데스크탑 네비게이션 -->
+      <nav class="desktop-nav" aria-label="메인 메뉴">
+        <a href="#hero-section" class="nav-link active">홈</a>
+        <a href="#fridge-core-section" class="nav-link">내 냉장고</a>
+        <a href="#priority-section" class="nav-link">우선 소비</a>
+        <a href="#recipes-section" class="nav-link">레시피 찾기</a>
+        <a href="#storage-section" class="nav-link">보관 가이드</a>
+        <a href="#sdgs-section" class="nav-link">SDGs 이야기</a>
+        <a href="#records-section" class="nav-link">나의 기록</a>
+      </nav>
+
+      <a href="#fridge-core-section" class="header-cta-btn" onclick="window.scrollToFridge(event)">
+        <span>🧊</span>
+        <span>냉장고 열기</span>
+      </a>
+
+      <!-- 모바일 햄버거 버튼 -->
+      <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="모바일 메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- 모바일 드로어 메뉴 -->
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="모바일 네비게이션">
+      <a href="#hero-section" class="mobile-nav-link">🏠 홈</a>
+      <a href="#fridge-core-section" class="mobile-nav-link" onclick="window.scrollToFridge(event)">🧊 내 냉장고 열기</a>
+      <a href="#priority-section" class="mobile-nav-link">⏰ 먼저 구조할 재료</a>
+      <a href="#recipes-section" class="mobile-nav-link">🍳 맞춤 레시피 찾기</a>
+      <a href="#storage-section" class="mobile-nav-link">📖 식재료 보관 가이드</a>
+      <a href="#sdgs-section" class="mobile-nav-link">🌱 음식물쓰레기와 SDGs</a>
+      <a href="#records-section" class="mobile-nav-link">📊 나의 구조 기록</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- =========================================================================
+         2. Hero Section
+         ========================================================================= -->
+    <section class="hero-section" id="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>🌱</span>
+            <span>지속가능한 식문화를 위한 작은 실천</span>
+          </div>
+          <h1 class="hero-title">
+            냉장고 속 그 재료,<br>
+            <span class="highlight">버리기 전에 한 끼 더.</span>
+          </h1>
+          <p class="hero-subtitle">
+            집에 남아 있는 식재료를 알려주세요.<br>
+            지금 만들 수 있는 요리와 먼저 먹어야 할 재료를 똑똑하게 찾아드릴게요.
+          </p>
+          <div class="hero-actions">
+            <a href="#fridge-core-section" class="btn-primary" onclick="window.scrollToFridge(event)">
+              <span>🥕</span>
+              <span>냉장고 열어보기</span>
+            </a>
+            <a href="#how-section" class="btn-secondary">
+              <span>💡</span>
+              <span>어떻게 사용하나요?</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 히어로 비주얼 (일러스트 쇼케이스) -->
+        <div class="hero-visual" aria-hidden="true">
+          <!-- 플로팅 뱃지 -->
+          <div class="floating-element badge-left">
+            <span>🥚</span>
+            <span>계란 4개 남음</span>
+          </div>
+          <div class="floating-element badge-right">
+            <span>🍳</span>
+            <span>계란볶음밥 추천!</span>
+          </div>
+
+          <div class="fridge-showcase-card">
+            <div class="fridge-door-handle"></div>
+            <div class="fridge-header-badge">
+              <span style="font-weight: 800; font-size: 0.95rem; color: var(--color-primary);">🧊 우리 집 냉장고</span>
+              <span class="fridge-temp-pill">냉장 3℃ · 신선 보관</span>
+            </div>
+
+            <div class="fridge-items-preview">
+              <div class="fridge-item-slot">
+                <span class="slot-emoji">🥕</span>
+                <span class="slot-name">당근</span>
+              </div>
+              <div class="fridge-item-slot">
+                <span class="slot-emoji">🥚</span>
+                <span class="slot-name">계란</span>
+              </div>
+              <div class="fridge-item-slot">
+                <span class="slot-emoji">🧅</span>
+                <span class="slot-name">양파</span>
+              </div>
+              <div class="fridge-item-slot">
+                <span class="slot-emoji">🍅</span>
+                <span class="slot-name">토마토</span>
+              </div>
+              <div class="fridge-item-slot">
+                <span class="slot-emoji">🍞</span>
+                <span class="slot-name">식빵</span>
+              </div>
+              <div class="fridge-item-slot">
+                <span class="slot-emoji">🌱</span>
+                <span class="slot-name">대파</span>
+              </div>
+            </div>
+
+            <div class="fridge-action-preview">
+              <span class="action-icon">✨</span>
+              <div class="action-text">
+                <strong>지금 12가지 요리 가능</strong>
+                <span>남은 재료 6가지로 오늘 식사 준비 완료</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. 서비스 문제 소개 (Why Section)
+         ========================================================================= -->
+    <section class="why-section" id="why-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">문제 해결의 시작</span>
+          <h2 class="section-title">왜 냉장고 구조대가 필요할까요?</h2>
+          <p class="section-desc">음식이 완전히 먹을 수 없어서 버려지는 것이 아닙니다. 사소한 타이밍과 방법의 차이에서 음식물 쓰레기가 발생합니다.</p>
+        </div>
+
+        <div class="why-cards-grid">
+          <article class="why-card">
+            <div class="why-card-icon">🥬</div>
+            <h3 class="why-card-title">있는 줄 몰라서</h3>
+            <p class="why-card-desc">냉장고 깊숙한 곳에 있던 재료를 뒤늦게 발견했을 때는 이미 신선도를 잃고 먹기 어려워진 경우가 많아요.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="why-card-icon">🍳</div>
+            <h3 class="why-card-title">뭘 만들지 몰라서</h3>
+            <p class="why-card-desc">재료가 조금씩 어중간하게 남아 있으면, 어떤 메뉴로 요리할 수 있는지 쉽게 떠오르지 않아 방치하게 돼요.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="why-card-icon">🧊</div>
+            <h3 class="why-card-title">보관법을 몰라서</h3>
+            <p class="why-card-desc">식재료마다 적합한 보관 방법이 다른데, 잘못 보관하면 수분이 날아가거나 훨씬 더 빠르게 상할 수 있어요.</p>
+          </article>
+        </div>
+
+        <div class="why-highlight-banner">
+          <span>🥕</span>
+          <span>냉장고 구조대는 이 세 가지 문제를 한 번에 해결하여, 당신의 한 끼와 지구를 연결합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. 사용 방법 (4 STEPS)
+         ========================================================================= -->
+    <section class="how-section" id="how-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">손쉬운 4단계 가이드</span>
+          <h2 class="section-title">이렇게 사용해보세요</h2>
+          <p class="section-desc">복잡한 절차 없이, 집 냉장고를 열어보듯 편안하게 이용할 수 있어요.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-number">STEP 01</span>
+            <div class="step-icon">🥕</div>
+            <h3 class="step-title">남은 재료 등록</h3>
+            <p class="step-desc">냉장고에 남아 있는 재료를 검색하거나 클릭 한 번으로 가볍게 등록하세요.</p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-number">STEP 02</span>
+            <div class="step-icon">⏰</div>
+            <h3 class="step-title">우선 소비 재료 확인</h3>
+            <p class="step-desc">보관 상태와 경과 시기를 바탕으로 먼저 요리에 활용해야 할 재료를 확인해요.</p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-number">STEP 03</span>
+            <div class="step-icon">🍳</div>
+            <h3 class="step-title">맞춤 레시피 추천</h3>
+            <p class="step-desc">내가 가진 재료를 가장 알뜰하게 소진할 수 있는 맛있는 레시피를 추천받아요.</p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-number">STEP 04</span>
+            <div class="step-icon">🌱</div>
+            <h3 class="step-title">음식물쓰레기 줄이기</h3>
+            <p class="step-desc">요리 완료를 체크하고 소중한 식재료를 구조하여 일상 속 SDGs를 실천해요.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. 핵심 기능 1: 내 냉장고 (식재료 입력 & 시각화)
+         ========================================================================= -->
+    <section class="fridge-core-section" id="fridge-core-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">핵심 기능</span>
+          <h2 class="section-title">냉장고에 뭐가 남아 있나요?</h2>
+          <p class="section-desc">하나씩 추가해보세요. 작은 자투리 재료도 괜찮아요!</p>
+        </div>
+
+        <!-- 모바일 세로 전용 뷰 전환 탭 (가로 회전 없이 100% 탐색) -->
+        <div class="fridge-view-segmented" role="tablist" aria-label="냉장고 화면 보기 모드">
+          <button type="button" class="fridge-tab-btn active" id="btn-tab-both" onclick="window.switchFridgeView('both')">
+            <span>📱 둘 다 세로로 보기</span>
+          </button>
+          <button type="button" class="fridge-tab-btn" id="btn-tab-fridge" onclick="window.switchFridgeView('fridge')">
+            <span>🧊 내 냉장고 (<span id="fridge-tab-count">0</span>)</span>
+          </button>
+          <button type="button" class="fridge-tab-btn" id="btn-tab-input" onclick="window.switchFridgeView('input')">
+            <span>＋ 식재료 추가</span>
+          </button>
+        </div>
+
+        <div class="fridge-management-layout" id="fridge-management-layout">
+          <!-- (1) 내 냉장고 보관함: 상단에 배치하여 현재 보유 재료를 즉시 확인 -->
+          <div class="fridge-display-panel" id="fridge-display-panel">
+            <div class="fridge-display-header">
+              <div class="fridge-display-title">
+                <span>🧊</span>
+                <span>내 냉장고 보관함</span>
+                <span class="fridge-count-badge" id="fridge-count-badge">0개 보관 중</span>
+              </div>
+              <button type="button" class="fridge-clear-btn" id="fridge-clear-btn">전체 비우기</button>
+            </div>
+
+            <div class="fridge-items-container" id="fridge-items-container">
+              <!-- script.js에서 실시간 렌더링 -->
+            </div>
+
+            <!-- 하단 재료 추가 이동 퀵 버튼 -->
+            <button type="button" class="fridge-quick-add-jump-btn" onclick="window.focusIngredientInput()">
+              <span>＋ 식재료 추가하러 가기 ⬇</span>
+            </button>
+          </div>
+
+          <!-- (2) 재료 추가 패널: 냉장고 바로 아래에 1열 세로 스택 -->
+          <div class="ingredient-input-panel" id="ingredient-input-panel">
+            <div class="input-panel-header">
+              <div>
+                <h3 class="input-panel-title">식재료 추가하기</h3>
+                <p class="input-panel-desc">재료를 검색하거나 아래 버튼을 클릭하면 바로 냉장고에 쏙!</p>
+              </div>
+              <button type="button" class="btn-direct-add" id="btn-direct-add" onclick="window.openDirectAdd(event)" title="새로운 재료 직접 입력하여 등록">
+                <span>✨ 직접 등록</span>
+              </button>
+            </div>
+
+            <!-- 검색 & 추가 버튼 래퍼 -->
+            <div class="search-input-wrapper">
+              <div class="search-field-box">
+                <span class="search-icon-badge">🔍</span>
+                <input type="text" id="ingredient-search-input" class="ingredient-search-input" placeholder="재료명 검색 또는 입력 (예: 계란, 양파, 스팸)" autocomplete="off">
+                <button type="button" id="btn-clear-search-input" class="btn-clear-search-input" style="display:none;" aria-label="입력 지우기">✕</button>
+              </div>
+              <button type="button" id="btn-search-add" class="btn-search-add" onclick="window.handleAddSearch(event)" aria-label="재료 추가">
+                <span class="btn-add-icon">＋</span>
+                <span>추가</span>
+              </button>
+              <div id="autocomplete-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+
+            <!-- 빠른 추가 (Quick Add) -->
+            <div class="quick-add-group">
+              <div class="quick-add-title">
+                <span>⚡</span>
+                <span>자주 남는 재료 원클릭 추가:</span>
+              </div>
+              <div class="quick-add-chips" id="quick-add-chips">
+                <button type="button" class="quick-chip-btn" data-name="계란" onclick="window.quickAdd('계란')">+ 🥚 계란</button>
+                <button type="button" class="quick-chip-btn" data-name="대파" onclick="window.quickAdd('대파')">+ 🌱 대파</button>
+                <button type="button" class="quick-chip-btn" data-name="양파" onclick="window.quickAdd('양파')">+ 🧅 양파</button>
+                <button type="button" class="quick-chip-btn" data-name="김치" onclick="window.quickAdd('김치')">+ 🥬 김치</button>
+                <button type="button" class="quick-chip-btn" data-name="두부" onclick="window.quickAdd('두부')">+ 🧊 두부</button>
+                <button type="button" class="quick-chip-btn" data-name="식빵" onclick="window.quickAdd('식빵')">+ 🍞 식빵</button>
+                <button type="button" class="quick-chip-btn" data-name="우유" onclick="window.quickAdd('우유')">+ 🥛 우유</button>
+                <button type="button" class="quick-chip-btn" data-name="감자" onclick="window.quickAdd('감자')">+ 🥔 감자</button>
+              </div>
+            </div>
+
+            <!-- 카테고리 필터 & 카테고리별 재료 목록 -->
+            <div class="category-filter-group">
+              <div class="quick-add-title">
+                <span>🏷️</span>
+                <span>카테고리별 재료 골라 담기 (클릭하여 추가):</span>
+              </div>
+              <div class="category-chips-scroll" id="category-chips">
+                <!-- script.js에서 동적 생성 -->
+              </div>
+              <div class="category-ingredients-grid" id="category-ingredients-grid">
+                <!-- script.js에서 선택된 카테고리의 모든 재료를 동적 생성 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. 핵심 기능 2: 먼저 구조해주세요! (우선순위 섹션)
+         ========================================================================= -->
+    <section class="priority-rescue-section" id="priority-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">스마트 알림</span>
+          <h2 class="section-title">⏰ 먼저 구조해주세요!</h2>
+          <p class="section-desc">구매 시기와 재료 특성을 고려해 먼저 소비할 것을 추천해드려요.</p>
+        </div>
+
+        <div class="priority-cards-grid">
+          <!-- 🔴 먼저 확인 -->
+          <div class="priority-column urgent">
+            <div class="priority-column-header">
+              <span class="priority-status-dot"></span>
+              <h3 class="priority-column-title">먼저 확인</h3>
+              <span class="priority-column-count" id="priority-urgent-count">0개</span>
+            </div>
+            <div class="priority-items-list" id="priority-urgent-list">
+              <!-- 동적 생성 -->
+            </div>
+          </div>
+
+          <!-- 🟡 가능한 빨리 사용 -->
+          <div class="priority-column moderate">
+            <div class="priority-column-header">
+              <span class="priority-status-dot"></span>
+              <h3 class="priority-column-title">가능한 빨리 사용</h3>
+              <span class="priority-column-count" id="priority-moderate-count">0개</span>
+            </div>
+            <div class="priority-items-list" id="priority-moderate-list">
+              <!-- 동적 생성 -->
+            </div>
+          </div>
+
+          <!-- 🟢 비교적 여유 있음 -->
+          <div class="priority-column safe">
+            <div class="priority-column-header">
+              <span class="priority-status-dot"></span>
+              <h3 class="priority-column-title">비교적 여유 있음</h3>
+              <span class="priority-column-count" id="priority-safe-count">0개</span>
+            </div>
+            <div class="priority-items-list" id="priority-safe-list">
+              <!-- 동적 생성 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 필수 안전 안내 문구 -->
+        <div class="safety-notice-banner">
+          <span class="safety-icon">⚠️</span>
+          <div>
+            <strong>안전 가이드 안내:</strong>
+            본 서비스는 음식 안전을 단정적으로 판정하지 않습니다. 실제 섭취 가능 여부는 냄새, 색, 질감, 포장 상태 및 제품에 표시된 소비기한을 직접 확인해주세요.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. 핵심 기능 3: 맞춤 레시피 추천 & 냉장고 털기
+         ========================================================================= -->
+    <section class="recipes-section" id="recipes-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">맞춤 요리 추천</span>
+          <h2 class="section-title">이 재료로 뭐 해먹지?</h2>
+          <p class="section-desc">내가 가진 재료를 최대로 활용하고 추가 구매는 최소화하는 든든한 레시피예요.</p>
+        </div>
+
+        <!-- 우선 소비 재료 하이라이트 배너 -->
+        <div class="urgent-spotlight-banner" id="urgent-spotlight-banner" style="display: none;">
+          <div class="urgent-spotlight-text" id="urgent-spotlight-text">
+            <!-- script.js에서 동적 채움 -->
+          </div>
+          <button type="button" class="btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;" onclick="document.querySelector('[data-filter=urgent]').click()">
+            해당 레시피만 보기 →
+          </button>
+        </div>
+
+        <!-- 레시피 상단 컨트롤 바 (필터 & 냉장고 털기 버튼) -->
+        <div class="recipes-control-bar">
+          <div class="recipe-filter-tabs">
+            <button type="button" class="recipe-tab-btn active" data-filter="all">전체 레시피</button>
+            <button type="button" class="recipe-tab-btn" data-filter="ready">🥇 바로 가능</button>
+            <button type="button" class="recipe-tab-btn" data-filter="quick">⏱️ 10분 요리</button>
+            <button type="button" class="recipe-tab-btn" data-filter="meal">🍚 든든한 한 끼</button>
+            <button type="button" class="recipe-tab-btn" data-filter="snack">🥪 간식/브런치</button>
+            <button type="button" class="recipe-tab-btn" data-filter="urgent">⏰ 우선 소비 재료</button>
+          </div>
+
+          <!-- 냉장고 털기 특별 버튼 -->
+          <button type="button" class="sweep-mode-btn" id="sweep-mode-btn">
+            <span>🧹</span>
+            <span>냉장고 털기 모드</span>
+          </button>
+        </div>
+
+        <!-- 레시피 카드 그리드 -->
+        <div class="recipes-grid" id="recipes-grid">
+          <!-- script.js에서 실시간 렌더링 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. 식재료 보관 가이드
+         ========================================================================= -->
+    <section class="storage-section" id="storage-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">신선함의 비결</span>
+          <h2 class="section-title">이 재료, 어떻게 보관하지?</h2>
+          <p class="section-desc">식재료 특성에 맞는 올바른 보관법으로 음식 수명을 늘려보세요.</p>
+        </div>
+
+        <!-- 보관법 실시간 검색 -->
+        <div class="storage-search-wrapper">
+          <span class="search-icon-badge">🔍</span>
+          <input type="text" id="storage-search-input" class="storage-search-input" placeholder="보관법이 궁금한 재료를 검색해보세요 (예: 대파, 감자, 식빵)">
+        </div>
+
+        <div class="storage-cards-grid" id="storage-cards-grid">
+          <!-- script.js에서 27종 데이터 실시간 렌더링 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. 나의 구조 기록 (My Impact)
+         ========================================================================= -->
+    <section class="records-section" id="records-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">지속가능한 일상</span>
+          <h2 class="section-title">나의 구조 기록</h2>
+          <p class="section-desc">내가 냉장고에서 살려낸 맛있는 음식과 식재료들의 기록이에요.</p>
+        </div>
+
+        <!-- 4개 핵심 지표 카드 -->
+        <div class="records-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🍳</div>
+            <div class="stat-label">만든 요리</div>
+            <div class="stat-value"><span id="stat-recipes-count">0</span><span class="stat-unit">개</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🥕</div>
+            <div class="stat-label">활용한 재료</div>
+            <div class="stat-value"><span id="stat-ingredients-count">0</span><span class="stat-unit">개</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🌱</div>
+            <div class="stat-label">구조 성공</div>
+            <div class="stat-value"><span id="stat-rescue-count">0</span><span class="stat-unit">회</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-label">연속 실천</div>
+            <div class="stat-value"><span id="stat-streak-days">1</span><span class="stat-unit">일</span></div>
+          </div>
+        </div>
+
+        <!-- 최근 완료 히스토리 -->
+        <div class="history-container">
+          <h3 class="history-title">
+            <span>📜</span>
+            <span>최근 구조 히스토리</span>
+          </h3>
+          <div class="history-list" id="history-list">
+            <!-- script.js에서 렌더링 -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         10. SDGs Impact & 스토리텔링
+         ========================================================================= -->
+    <section class="sdgs-section" id="sdgs-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">UN 지속가능발전목표</span>
+          <h2 class="section-title">내 한 끼가 SDGs와 연결되는 이유</h2>
+          <p class="section-desc">냉장고 속 재료를 버리지 않고 요리하는 일상의 사소한 행동이 지구를 지키는 큰 발걸음이 됩니다.</p>
+        </div>
+
+        <!-- SDGs 3대 목표 카드 -->
+        <div class="sdgs-cards-grid">
+          <!-- SDG 12 (핵심 강조) -->
+          <article class="sdg-card featured">
+            <div>
+              <div class="sdg-number-badge" style="background-color: #BF8B2E;">12</div>
+              <h3 class="sdg-title">책임감 있는 소비와 생산</h3>
+              <div class="sdg-subtitle">Responsible Consumption and Production</div>
+              <p class="sdg-desc">
+                필요한 만큼 소비하고 구매한 식재료를 버리지 않고 끝까지 먹는 것은 전 세계 식량 손실을 줄이는 가장 실질적이고 강력한 첫걸음입니다. 가정에서 버려지는 음식물 쓰레기를 줄이는 직접적인 실천입니다.
+              </p>
+            </div>
+          </article>
+
+          <!-- SDG 2 -->
+          <article class="sdg-card">
+            <div>
+              <div class="sdg-number-badge" style="background-color: #DDA63A;">2</div>
+              <h3 class="sdg-title">기아 종식</h3>
+              <div class="sdg-subtitle">Zero Hunger</div>
+              <p class="sdg-desc">
+                한쪽에서는 소중한 식량이 낭비되고 한쪽에서는 결식과 식량 불안이 존재합니다. 음식의 가치를 다시 생각하고 먹을 수 있는 식재료를 소중히 다루는 태도가 곧 식량 자원 보호의 출발점입니다.
+              </p>
+            </div>
+          </article>
+
+          <!-- SDG 13 -->
+          <article class="sdg-card">
+            <div>
+              <div class="sdg-number-badge" style="background-color: #3F7E44;">13</div>
+              <h3 class="sdg-title">기후변화 대응</h3>
+              <div class="sdg-subtitle">Climate Action</div>
+              <p class="sdg-desc">
+                식품이 생산되고, 냉장 트럭으로 운송되며, 조리되고, 폐기물로 썩어 매립되는 전 과정에서 막대한 온실가스(메탄, 이산화탄소)가 배출됩니다. 음식 낭비를 막는 것은 지구의 온도를 낮추는 기후 행동입니다.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <!-- 스토리텔링: 버려지는 건 음식만이 아니에요 -->
+        <div class="story-scroll-container">
+          <div class="story-header">
+            <h3>"버려지는 건 음식만이 아니에요."</h3>
+            <p style="color: var(--color-text-sub);">한 끼의 음식이 식탁에 오기까지 지나온 모든 여정을 기억해주세요.</p>
+          </div>
+
+          <div class="story-steps-horizontal">
+            <div class="story-step-card">
+              <span class="story-emoji">🌾</span>
+              <p class="story-step-text">음식을 만들기 위해서는 소중한 식재료가 필요합니다.</p>
+            </div>
+            <div class="story-step-card">
+              <span class="story-emoji">💧</span>
+              <p class="story-step-text">재료를 생산하기 위해 막대한 물과 토지, 농부의 땀이 쓰입니다.</p>
+            </div>
+            <div class="story-step-card">
+              <span class="story-emoji">🚚</span>
+              <p class="story-step-text">우리 식탁까지 안전하게 운송하는 과정에도 에너지가 사용됩니다.</p>
+            </div>
+            <div class="story-step-card">
+              <span class="story-emoji">🗑️</span>
+              <p class="story-step-text">먹지 않고 버리면 이 모든 과정에 투입된 자원도 함께 버려집니다.</p>
+            </div>
+            <div class="story-step-card">
+              <span class="story-emoji">🌱</span>
+              <p class="story-step-text">가장 쉽고 강력한 시작은 이미 사둔 재료를 알뜰하게 잘 먹는 것입니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         11. 오늘의 작은 미션
+         ========================================================================= -->
+    <section class="mission-section" id="mission-section">
+      <div class="container">
+        <div class="mission-card">
+          <span class="mission-tag" id="mission-tag">🔍 오늘의 미션</span>
+          <h2 class="mission-title" id="mission-title">냉장고 구석 잠자는 재료 1개 구출하기</h2>
+          <p class="mission-desc" id="mission-desc">냉장고 안쪽 깊숙한 곳을 열어 가장 오래된 재료를 하나 찾아 오늘 식단에 올려보세요.</p>
+          <button type="button" class="mission-btn" id="mission-btn">
+            <span>👍</span>
+            <span>오늘 해볼게요</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       12. 푸터 (Footer)
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h4>🥕 냉장고 구조대</h4>
+          <p>버리기 전에, 한 끼 더.<br>작은 냉장고 정리가 지속가능한 소비의 시작입니다.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="푸터 네비게이션">
+          <a href="#hero-section">서비스 소개</a>
+          <a href="#recipes-section">레시피 찾기</a>
+          <a href="#storage-section">보관 가이드</a>
+          <a href="#sdgs-section">SDGs 이야기</a>
+          <a href="#records-section">나의 기록</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p>본 프로젝트는 가정 내 음식물쓰레기 감소와 UN SDGs(지속가능발전목표) 인식 확산을 목적으로 제작되었습니다.</p>
+        <p style="margin-top: 6px; font-size: 0.78rem;">© 2026 Save My Fridge. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+      <!-- 모바일 앱 전용 하단 고정 탭바 (Bottom Navigation Tab Bar) -->
+      <nav class="mobile-bottom-tabbar" id="mobile-bottom-tabbar" aria-label="모바일 하단 빠른 메뉴">
+        <a href="#hero-section" class="tab-item active" data-target="hero-section">
+          <span class="tab-icon">🏠</span>
+          <span class="tab-label">홈</span>
+        </a>
+        <a href="#fridge-core-section" class="tab-item" data-target="fridge-core-section" onclick="window.scrollToFridge(event)">
+          <span class="tab-icon">🧊</span>
+          <span class="tab-label">내 냉장고</span>
+        </a>
+        <a href="#priority-section" class="tab-item" data-target="priority-section">
+          <span class="tab-icon">⏰</span>
+          <span class="tab-label">우선소비</span>
+        </a>
+        <a href="#recipes-section" class="tab-item" data-target="recipes-section">
+          <span class="tab-icon">🍳</span>
+          <span class="tab-label">레시피</span>
+        </a>
+        <a href="#records-section" class="tab-item" data-target="records-section">
+          <span class="tab-icon">📊</span>
+          <span class="tab-label">나의기록</span>
+        </a>
+      </nav>
+
+      <!-- 스마트폰 하단 홈 바 (iOS 스타일) -->
+      <div class="phone-home-indicator" aria-hidden="true">
+        <div class="home-indicator-bar"></div>
+      </div>
+
+    </div><!-- /.smartphone-frame -->
+  </div><!-- /.mobile-device-backdrop -->
+
+  <!-- =========================================================================
+       13. 모달 레이어들 (Modals)
+       ========================================================================= -->
+
+  <!-- (1) 식재료 상세 입력/수정 모달 -->
+  <div class="ingredient-detail-modal" id="ingredient-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-item-title">
+    <div class="detail-modal-card">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" onclick="window.closeAllModals()" aria-label="닫기">✕</button>
+      
+      <div class="modal-header-info">
+        <div class="modal-item-icon" id="modal-item-icon">🥚</div>
+        <div>
+          <h3 class="modal-item-title" id="modal-item-title">계란</h3>
+          <div class="modal-item-sub" id="modal-item-sub">기본 단위: 개</div>
+        </div>
+      </div>
+
+      <form id="ingredient-form">
+        <!-- 직접 입력 시 이름 입력 필드 -->
+        <div class="form-group" id="modal-custom-name-group" style="display: none;">
+          <label class="form-label" for="modal-custom-name-input">재료 이름</label>
+          <input type="text" id="modal-custom-name-input" class="ingredient-search-input" placeholder="추가할 재료명 (예: 베이컨, 떡볶이떡, 파스타면)" maxlength="20">
+        </div>
+
+        <!-- 수량 조절 -->
+        <div class="form-group">
+          <label class="form-label">보관 수량</label>
+          <div class="quantity-control">
+            <button type="button" class="quantity-btn" id="modal-qty-minus" onclick="window.adjustQty(-1)" aria-label="수량 감소">-</button>
+            <input type="number" id="modal-qty-input" class="quantity-input" value="1" min="1" max="99">
+            <button type="button" class="quantity-btn" id="modal-qty-plus" onclick="window.adjustQty(1)" aria-label="수량 증가">+</button>
+            <span class="quantity-unit" id="modal-unit-text">개</span>
+          </div>
+        </div>
+
+        <!-- 언제 구매했나요? -->
+        <div class="form-group">
+          <label class="form-label">언제 구매했나요?</label>
+          <div class="radio-chips-group five-cols">
+            <div class="radio-chip-option">
+              <input type="radio" id="p-today" name="purchasePeriod" value="today" checked>
+              <label for="p-today" class="radio-chip-label">오늘</label>
+            </div>
+            <div class="radio-chip-option">
+              <input type="radio" id="p-12" name="purchasePeriod" value="1-2days">
+              <label for="p-12" class="radio-chip-label">1~2일 전</label>
+            </div>
+            <div class="radio-chip-option">
+              <input type="radio" id="p-35" name="purchasePeriod" value="3-5days">
+              <label for="p-35" class="radio-chip-label">3~5일 전</label>
+            </div>
+            <div class="radio-chip-option">
+              <input type="radio" id="p-week" name="purchasePeriod" value="week_plus">
+              <label for="p-week" class="radio-chip-label">1주 이상</label>
+            </div>
+            <div class="radio-chip-option" style="grid-column: 1 / -1;">
+              <input type="radio" id="p-unknown" name="purchasePeriod" value="unknown">
+              <label for="p-unknown" class="radio-chip-label">잘 모르겠어요</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 보관 상태 -->
+        <div class="form-group">
+          <label class="form-label">보관 상태</label>
+          <div class="radio-chips-group">
+            <div class="radio-chip-option">
+              <input type="radio" id="s-fridge" name="storageType" value="fridge" checked>
+              <label for="s-fridge" class="radio-chip-label">🧊 냉장</label>
+            </div>
+            <div class="radio-chip-option">
+              <input type="radio" id="s-freeze" name="storageType" value="freeze">
+              <label for="s-freeze" class="radio-chip-label">❄️ 냉동</label>
+            </div>
+            <div class="radio-chip-option">
+              <input type="radio" id="s-room" name="storageType" value="room">
+              <label for="s-room" class="radio-chip-label">🏡 실온</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="modal-submit-btn" id="modal-submit-btn">냉장고에 넣기</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- (2) 레시피 상세 모달 -->
+  <div class="recipe-detail-modal" id="recipe-detail-modal" role="dialog" aria-modal="true" aria-label="레시피 상세">
+    <div class="recipe-modal-content">
+      <button type="button" class="modal-close-btn" id="recipe-modal-close-btn" aria-label="닫기">✕</button>
+      <div id="recipe-modal-body">
+        <!-- script.js에서 동적 생성 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- (3) 요리 완료 & 재료 차감 모달 -->
+  <div class="cooking-done-modal" id="cooking-done-modal" role="dialog" aria-modal="true" aria-label="요리 완료">
+    <div class="cooking-done-card">
+      <button type="button" class="modal-close-btn" id="done-modal-close-btn" aria-label="닫기">✕</button>
+      <div class="done-emoji">🎉</div>
+      <h3 class="done-title">오늘도 냉장고 구조 성공!</h3>
+      <p class="done-desc">남아 있던 재료를 맛있는 한 끼로 바꿨어요.<br>이번 요리에 사용한 재료를 선택해주세요.</p>
+
+      <div class="used-ingredients-selection">
+        <div class="used-selection-title">사용한 재료 체크 (수량 1개씩 차감):</div>
+        <div class="used-items-checkboxes" id="used-ingredients-list">
+          <!-- 동적 생성 -->
+        </div>
+      </div>
+
+      <button type="button" class="btn-confirm-rescue" id="confirm-rescue-btn">사용 완료 및 기록하기</button>
+    </div>
+  </div>
+
+  <!-- 토스트 컨테이너 -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- 모바일 플로팅 CTA -->
+  <button type="button" class="mobile-floating-cta" id="mobile-floating-cta" onclick="window.scrollToFridge(event)" aria-label="냉장고 재료 추가">
+    <span>🥕</span>
+    <span>재료 추가</span>
+  </button>
+
+  <!-- 축하 Confetti 캔버스 -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- 자바스크립트 (기능 및 데이터 일체화) -->
+  <script src="app.js"></script>
+</body>
+</html>
